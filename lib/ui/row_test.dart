@@ -25,30 +25,30 @@ class RowTest extends StatelessWidget {
       //     ],
       //   ),
       // ),
-      // body: Row(
-      //   children: [
-      //     Container(height: 100, width: 50, color: Colors.red),
-      //     Expanded(
-      //       child: Container(height: 100, width: 200, color: Colors.black),
-      //     ),
-      //     Container(height: 100, width: 50, color: Colors.green),
-      //   ],
-      // ),
-      body: Wrap(
-        spacing: 10,
-        runSpacing: 10,
-        alignment: WrapAlignment.center,
+      body: Row(
         children: [
-          Container(height: 100, width: 150, color: Colors.red),
-          Container(height: 100, width: 150, color: Colors.black),
-          Container(height: 100, width: 150, color: Colors.green),
-          Container(height: 100, width: 150, color: Colors.yellow),
-          Container(height: 100, width: 150, color: Colors.purple),
-          Container(height: 100, width: 150, color: Colors.orange),
-          Container(height: 100, width: 150, color: Colors.pink),
-          Container(height: 100, width: 150, color: Colors.brown),
+          Container(height: 100, width: 50, color: Colors.red),
+          Expanded(
+            child: Container(height: 100, width: 200, color: Colors.black),
+          ),
+          Container(height: 100, width: 50, color: Colors.green),
         ],
       ),
+      // body: Wrap(
+      //   spacing: 10,
+      //   runSpacing: 10,
+      //   alignment: WrapAlignment.center,
+      //   children: [
+      //     Container(height: 100, width: 150, color: Colors.red),
+      //     Container(height: 100, width: 150, color: Colors.black),
+      //     Container(height: 100, width: 150, color: Colors.green),
+      //     Container(height: 100, width: 150, color: Colors.yellow),
+      //     Container(height: 100, width: 150, color: Colors.purple),
+      //     Container(height: 100, width: 150, color: Colors.orange),
+      //     Container(height: 100, width: 150, color: Colors.pink),
+      //     Container(height: 100, width: 150, color: Colors.brown),
+      //   ],
+      // ),
     );
   }
 }
