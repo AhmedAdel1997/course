@@ -9,7 +9,6 @@ class ColumnTest extends StatelessWidget {
       appBar: AppBar(title: Text('Column Test'), backgroundColor: Colors.blue),
       body: SizedBox(
         width: double.infinity,
-
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

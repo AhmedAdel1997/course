@@ -25,14 +25,17 @@ class RowTest extends StatelessWidget {
       //     ],
       //   ),
       // ),
-      body: Row(
-        children: [
-          Container(height: 100, width: 50, color: Colors.red),
-          Expanded(
-            child: Container(height: 100, width: 200, color: Colors.black),
-          ),
-          Container(height: 100, width: 50, color: Colors.green),
-        ],
+      body: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            Container(height: 100, width: 50, color: Colors.red),
+            Expanded(
+              child: Container(height: 100, width: 200, color: Colors.black),
+            ),
+            Container(height: 100, width: 50, color: Colors.green),
+          ],
+        ),
       ),
       // body: Wrap(
       //   spacing: 10,

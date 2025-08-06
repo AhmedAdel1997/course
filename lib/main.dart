@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'ui/column_test.dart';
+import 'ui/buttons_text.dart';
 
 void main() {
   //entry point for dart
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       debugShowCheckedModeBanner: false,
-      home: const ColumnTest(),
+      home: const ButtonsText(),
     );
   }
 }
