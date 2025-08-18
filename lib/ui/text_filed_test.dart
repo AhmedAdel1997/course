@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
+import '../core/validators.dart';
+
 class TextFiledTest extends StatefulWidget {
   const TextFiledTest({super.key});
 
@@ -34,19 +36,7 @@ class _TextFiledTestState extends State<TextFiledTest> {
               SizedBox(height: 30),
               TextFormField(
                 controller: emailController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'E-mail is required';
-                  }
-                  //regex email
-                  final emailRegex = RegExp(
-                    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                  );
-                  if (!emailRegex.hasMatch(value)) {
-                    return 'Invalid email address';
-                  }
-                  return null;
-                },
+                validator: Validators.validateEmail,
                 decoration: InputDecoration(
                   labelText: 'E-mail',
                   labelStyle: TextStyle(fontSize: 15),
@@ -59,36 +49,7 @@ class _TextFiledTestState extends State<TextFiledTest> {
               TextFormField(
                 controller: passwordController,
 
-                validator: (value) {
-                  // if (value == null || value.isEmpty) {
-                  //   return 'Password is required';
-                  // }
-                  // if (value.length < 8) {
-                  //   return 'Password must be at least 8 characters long';
-                  // }
-                  // //uppercase lowecase
-                  // if (!value.contains(RegExp(r'[A-Z]')) ||
-                  //     !value.contains(RegExp(r'[a-z]'))) {
-                  //   return 'Password must contain at least one uppercase and one lowercase letter';
-                  // }
-                  // //number
-                  // if (!value.contains(RegExp(r'[0-9]'))) {
-                  //   return 'Password must contain at least one number';
-                  // }
-                  // //special character
-                  // if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-                  //   return 'Password must contain at least one special character';
-                  // }
-
-                  //regex for storng password
-                  final passwordRegex = RegExp(
-                    r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&]{16,}$',
-                  );
-                  if (!passwordRegex.hasMatch(value!)) {
-                    return 'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number and one special character';
-                  }
-                  return null;
-                },
+                validator: Validators.validatePassword,
                 decoration: InputDecoration(
                   errorMaxLines: 2,
                   labelText: 'Password',

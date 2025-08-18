@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../core/colors.dart';
+
 class RowTest extends StatelessWidget {
   const RowTest({super.key});
 
@@ -25,17 +27,13 @@ class RowTest extends StatelessWidget {
       //     ],
       //   ),
       // ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            Container(height: 100, width: 50, color: Colors.red),
-            Expanded(
-              child: Container(height: 100, width: 200, color: Colors.black),
-            ),
-            Container(height: 100, width: 50, color: Colors.green),
-          ],
-        ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(height: 100, width: 100, color: AppColors.primary),
+          Container(height: 100, width: 100, color: AppColors.primary),
+          Container(height: 100, width: 100, color: AppColors.primary),
+        ],
       ),
       // body: Wrap(
       //   spacing: 10,
