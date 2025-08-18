@@ -1,29 +1,21 @@
 import 'package:course/core/text_styles.dart';
+import 'package:course/ui/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'ui/column_test.dart';
+// Future
+// Stream
 
 Future<void> main() async {
   //entry point for dart
   runApp(const MyApp()); //entry point for flutter
 
-  //synchronous function
-  // Future<void> logX() async {
-  //   await Future.delayed(Duration(seconds: 4), () {
-  //     log('x');
-  //   });
-  // }
-
-  // //asynchronous function
-  // Future<void> logY() async {
-  //   Future.delayed(Duration(seconds: 4), () {
-  //     log('y');
-  //   });
-  // }
-
-  // await logX();
-  // logY();
+  // final userModel = UserModel(
+  //   name: 'Ahmed',
+  //   email: 'ahmed@gmail.com',
+  //   phone: '01010101010',
+  // );
+  // log(userModel.email);
 }
 
 class MyApp extends StatelessWidget {
@@ -36,6 +28,10 @@ class MyApp extends StatelessWidget {
       designSize: const Size(430, 932),
       minTextAdapt: true,
       splitScreenMode: true,
+      //bloc provider
+      //bloc builder
+      //bloc listener
+      //bloc consumer
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -43,7 +39,7 @@ class MyApp extends StatelessWidget {
           fontFamily: fontFamily,
         ),
         debugShowCheckedModeBanner: false,
-        home: const ColumnTest(),
+        home: const LoginScreen(),
       ),
     );
   }

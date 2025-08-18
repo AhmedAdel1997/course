@@ -35,7 +35,6 @@ class _ColumnTestState extends State<ColumnTest> {
               'assets/images/logo.png',
               height: 80.h,
               width: 134.w,
-
               fit: BoxFit.fill,
             ),
             // // ClipRRect(
