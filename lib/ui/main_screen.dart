@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'home_screen.dart';
-import 'notification_screen.dart';
-import 'profile_screen.dart';
+import '../cubit/bottom_bar/bottom_bar_cubit.dart';
 
 // Bottom Navigation bar
 
@@ -14,76 +11,55 @@ import 'profile_screen.dart';
 // dispose  // call if exist
 // setState
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  final pages = [HomeScreen(), NotificationScreen(), ProfileScreen()];
-  int currentIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    log('initState');
-  }
-
-  @override
-  void dispose() {
-    log('dispose');
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    log('build');
-    return PopScope(
-      canPop: currentIndex == 0 ? true : false,
-      onPopInvokedWithResult: (didPop, result) {
-        setState(() {
-          currentIndex = 0;
-        });
-      },
-      child: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: currentIndex,
-          selectedLabelStyle: TextStyle(color: Colors.blue),
-          unselectedLabelStyle: TextStyle(color: Colors.grey),
-          onTap: (value) {
-            setState(() {
-              currentIndex = value;
-            });
+    return BlocBuilder<BottomBarCubit, BottomBarState>(
+      builder: (context, state) {
+        return PopScope(
+          canPop: state.currentIndex == 0 ? true : false,
+          onPopInvokedWithResult: (didPop, result) {
+            context.read<BottomBarCubit>().changePage(0);
           },
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: currentIndex == 0 ? Colors.blue : Colors.grey,
-              ),
-              label: 'Home',
-              // tooltip: 'Home',
+          child: Scaffold(
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: state.currentIndex,
+              selectedLabelStyle: TextStyle(color: Colors.blue),
+              unselectedLabelStyle: TextStyle(color: Colors.grey),
+              onTap: (value) {
+                context.read<BottomBarCubit>().changePage(value);
+              },
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home,
+                    color: state.currentIndex == 0 ? Colors.blue : Colors.grey,
+                  ),
+                  label: 'Home',
+                  // tooltip: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.notifications,
+                    color: state.currentIndex == 1 ? Colors.blue : Colors.grey,
+                  ),
+                  label: 'Notification',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.person,
+                    color: state.currentIndex == 2 ? Colors.blue : Colors.grey,
+                  ),
+                  label: 'Profile',
+                ),
+              ],
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.notifications,
-                color: currentIndex == 1 ? Colors.blue : Colors.grey,
-              ),
-              label: 'Notification',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                color: currentIndex == 2 ? Colors.blue : Colors.grey,
-              ),
-              label: 'Profile',
-            ),
-          ],
-        ),
-        body: pages[currentIndex],
-      ),
+            body: state.pages[state.currentIndex],
+          ),
+        );
+      },
     );
   }
 }

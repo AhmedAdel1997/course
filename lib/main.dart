@@ -1,7 +1,10 @@
 import 'package:course/core/text_styles.dart';
-import 'package:course/ui/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'cubit/bottom_bar/bottom_bar_cubit.dart';
+import 'ui/main_screen.dart';
 
 // Future
 // Stream
@@ -28,18 +31,17 @@ class MyApp extends StatelessWidget {
       designSize: const Size(430, 932),
       minTextAdapt: true,
       splitScreenMode: true,
-      //bloc provider
-      //bloc builder
-      //bloc listener
-      //bloc consumer
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          fontFamily: fontFamily,
+      child: BlocProvider(
+        create: (context) => BottomBarCubit(),
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            fontFamily: fontFamily,
+          ),
+          debugShowCheckedModeBanner: false,
+          home: const MainScreen(),
         ),
-        debugShowCheckedModeBanner: false,
-        home: const LoginScreen(),
       ),
     );
   }
