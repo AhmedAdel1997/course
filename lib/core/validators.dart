@@ -24,4 +24,18 @@ class Validators {
     }
     return null;
   }
+
+  //validate phone
+  static String? validatePhone(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Phone number is required';
+    }
+    if (value.length != 10) {
+      return 'Phone number must be 10 digits';
+    }
+    if (!value.startsWith('05')) {
+      return 'Phone number must start with 01';
+    }
+    return null;
+  }
 }

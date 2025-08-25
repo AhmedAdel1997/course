@@ -12,12 +12,26 @@ class GetServicesCubit extends Cubit<GetServicesState> {
   final dio = Dio(BaseOptions(baseUrl: 'https://dragon-lines.com'));
 
   Future<void> getServices() async {
+    // loading state
+    emit(GetServicesLoading());
     try {
-      final response = await dio.get('/api/services');
+      final response = await dio.get(
+        '/api/services',
+        options: Options(
+          headers: {
+            'Accept-Language': 'en',
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
 
       final serviceResponse = ServiceResponse.fromJson(response.data);
+      // success state
+      emit(GetServicesSuccess(services: serviceResponse.servicesList.data));
     } catch (error) {
       log(error.toString());
+      // fail / error state
+      emit(GetServicesFailure(errorMessage: error.toString()));
     }
   }
 }

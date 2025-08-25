@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'cubit/bottom_bar/bottom_bar_cubit.dart';
-import 'ui/main_screen.dart';
+import 'cubit/check_login/check_login_cubit.dart';
+import 'ui/splash_screen.dart';
 
 // Future
 // Stream
@@ -31,8 +32,11 @@ class MyApp extends StatelessWidget {
       designSize: const Size(430, 932),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: BlocProvider(
-        create: (context) => BottomBarCubit(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => BottomBarCubit()),
+          BlocProvider(create: (context) => CheckLoginCubit()),
+        ],
         child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
@@ -40,7 +44,7 @@ class MyApp extends StatelessWidget {
             fontFamily: fontFamily,
           ),
           debugShowCheckedModeBanner: false,
-          home: const MainScreen(),
+          home: const SplashScreen(),
         ),
       ),
     );

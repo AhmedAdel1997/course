@@ -1,47 +1,52 @@
 class ServiceResponse {
   final bool success;
-  final Data data;
+  final ServiceListModel servicesList;
   final String message;
 
   ServiceResponse({
     required this.success,
-    required this.data,
+    required this.servicesList,
     required this.message,
   });
 
-  ServiceResponse copyWith({bool? success, Data? data, String? message}) =>
-      ServiceResponse(
-        success: success ?? this.success,
-        data: data ?? this.data,
-        message: message ?? this.message,
-      );
+  ServiceResponse copyWith({
+    bool? success,
+    ServiceListModel? servicesList,
+    String? message,
+  }) => ServiceResponse(
+    success: success ?? this.success,
+    servicesList: servicesList ?? this.servicesList,
+    message: message ?? this.message,
+  );
   //factory constructor -> convert json to object    // design pattern ( creation pattern )
   factory ServiceResponse.fromJson(Map<String, dynamic> json) =>
       ServiceResponse(
         success: json["success"],
-        data: Data.fromJson(json["data"]),
+        servicesList: ServiceListModel.fromJson(json["data"]),
         message: json["message"],
       );
 
   Map<String, dynamic> toJson() => {
     "success": success,
-    "data": data.toJson(),
+    "data": servicesList.toJson(),
     "message": message,
   };
 }
 
-class Data {
+class ServiceListModel {
   final List<ServiceModel> data;
 
-  Data({required this.data});
+  ServiceListModel({required this.data});
 
-  Data copyWith({List<ServiceModel>? data}) => Data(data: data ?? this.data);
+  ServiceListModel copyWith({List<ServiceModel>? data}) =>
+      ServiceListModel(data: data ?? this.data);
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-    data: List<ServiceModel>.from(
-      json["data"].map((x) => ServiceModel.fromJson(x)),
-    ),
-  );
+  factory ServiceListModel.fromJson(Map<String, dynamic> json) =>
+      ServiceListModel(
+        data: List<ServiceModel>.from(
+          json["data"].map((x) => ServiceModel.fromJson(x)),
+        ),
+      );
 
   Map<String, dynamic> toJson() => {
     "data": List<dynamic>.from(data.map((x) => x.toJson())),
